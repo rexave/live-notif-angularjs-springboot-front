@@ -1,3 +1,7 @@
 <h1>Test de notification de couleur</h1>
-<a href="#" ng-click="vm.abonnementAuxCouleurs()">S'abonner aux notifications</a>
-<p>La couleur actuelle est {{ vm.couleur }}</p>
+<button ng-click="abonnementAuxCouleurs()">S'abonner aux notifications</button>
+<p>La couleur actuelle est {{ couleur }}</p>
+<p>Changer en :</p>
+<ul>
+	<li ng-repeat="newCouleur in listeCouleursDisponibles" ng-click="demanderChangerCouleur(newCouleur)">{{newCouleur}}</li>
+</ul>

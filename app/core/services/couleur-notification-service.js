@@ -4,7 +4,7 @@ angular.module('myApp.services', [])
 	.service("couleurNotificationService", ['$http', function ($http) {
 		var service = {
 			changerCouleur: changerCouleur,
-			abonnementAuxCouleurs: abonnementAuxCouleurs
+			subscribe: subscribe
 		};
 
 		function changerCouleur(nouvelleCouleur) {
@@ -12,7 +12,7 @@ angular.module('myApp.services', [])
 			return true;
 		}
 
-		function abonnementAuxCouleurs() {
+		function subscribe() {
 			console.log("abonnement demandé");
 		}
 

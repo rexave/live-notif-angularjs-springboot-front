@@ -9,23 +9,27 @@ angular.module('myApp.couleurs', [])
 				controllerAs: 'vm'
 			});
 	}])
-	.controller('couleurCtrl', ['couleurNotificationService', function (couleurNotificationService) {
+	.controller('couleurCtrl', ['couleurNotificationService', "$scope", function (couleurNotificationService, $scope) {
 
 		var vm = this;
 
-		var couleur;
 
-		vm.demanderChangerCouleur = demanderChangerCouleur;
-		vm.abonnementAuxCouleurs = abonnementAuxCouleurs;
-		vm.couleur = couleur;
-
-		vm.$onInit = function () {
-			couleur = "indéfinie";
-		};
+		$scope.demanderChangerCouleur = demanderChangerCouleur;
+		$scope.abonnementAuxCouleurs = abonnementAuxCouleurs;
+		$scope.couleur = "indéfinie";
+		$scope.listeCouleursDisponibles = [
+			"bleu",
+			"red",
+			"green",
+			"orange",
+			"yellow",
+			"black",
+			"white"
+		];
 
 		function demanderChangerCouleur(nouvelleCouleur) {
 			couleurNotificationService.changerCouleur(nouvelleCouleur);
-			couleur = nouvelleCouleur;
+			$scope.couleur = nouvelleCouleur;
 		}
 
 		function abonnementAuxCouleurs() {
