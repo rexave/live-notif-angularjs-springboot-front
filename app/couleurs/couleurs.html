@@ -3,7 +3,8 @@
 <p>La couleur actuelle est <span class="badge">{{ couleur }}</span> {{ reponse }}</p>
 <p>Changer en : </p>
 <ul class="list-group list-group-horizontal ">
-	<li class="list-group-item list-group-item-action" ng-repeat="newCouleur in listeCouleursDisponibles" ng-click="demanderChangerCouleur(newCouleur)">
+	<li class="list-group-item list-group-item-action" ng-repeat="newCouleur in listeCouleursDisponibles"
+		ng-click="demanderChangerCouleur(newCouleur)">
 		{{newCouleur}}
 	</li>
 </ul>
@@ -11,8 +12,7 @@
 <div class="container mt-5">
 	<div class="row" ng-repeat="x in listeX">
 		<div class="col" ng-repeat="y in listeY">
-			{{ x }}-{{ y }}
-			<boite couleur="couleur"></boite>
+			<boite x="{{ x }}" y="{{ y }}" couleur="{{ couleur }}"></boite>
 		</div>
 	</div>
 </div>
