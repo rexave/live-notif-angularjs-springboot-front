@@ -8,14 +8,14 @@ angular.module('myApp.services', [])
 			subscribe: subscribe
 		};
 
-		var maxX = 12;
-		var maxY = 12;
-		var listeSubscriber = Array.from({length: maxX}, () => Array.from({length: maxY}, () => "black"));;
+		var maxX = 0;
+		var maxY = 0;
+		var listeSubscriber = Array.from({length: 100}, () => Array.from({length: 100}, () => "black"));
 
 		function changerCouleur(nouvelleCouleur) {
 			console.log("changement demandé", nouvelleCouleur);
 			var defer = $q.defer();
-			$http.get("http://localhost:9999/couleur/activer/" + nouvelleCouleur + "/12/12")
+			$http.get("http://localhost:9999/couleur/activer/" + nouvelleCouleur + "/" + maxX + "/" + maxY)
 				.then(function (data) {
 					defer.resolve(data);
 				}, function (data) {
@@ -24,8 +24,10 @@ angular.module('myApp.services', [])
 			return defer.promise;
 		}
 
-		function connexionAuTopic() {
+		function connexionAuTopic(maxXp, maxYp) {
 			console.log("abonnement demandé");
+			maxX = maxXp;
+			maxY = maxYp;
 			webSocketService.connexion('/topic/couleurs', notifierBoiteEnfant);
 		}
 

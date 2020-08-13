@@ -17,6 +17,7 @@ function BoiteController(couleurNotificationService) {
 		console.log("creation de la boite", ctrl.x, ctrl.y, ctrl.couleur);
 		ctrl.couleurAffichee = "not initialized";
 		couleurNotificationService.subscribe(ctrl.x, ctrl.y, changerCouleur);
+		ctrl.cssvar = {'background-color': "blue"};
 	};
 
 	function changerCouleur(nouvelleCouleur) {

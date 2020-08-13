@@ -9,10 +9,10 @@
 	</li>
 </ul>
 
-<div class="container mt-5">
-	<div class="row" ng-repeat="x in listeX">
-		<div class="col" ng-repeat="y in listeY">
-			<boite x="{{ x }}" y="{{ y }}" couleur="{{ couleur }}"></boite>
+<div >
+	<div  ng-repeat="x in listeX">
+		<div  ng-repeat="y in listeY">
+			<boite x="{{ x }}" y="{{ y }}" couleur="{{ couleur }}" class="float-left"></boite>
 		</div>
 	</div>
 </div>
