@@ -43,15 +43,19 @@ angular.module('myApp.couleurs', [])
 			var changerCouleur = couleurNotificationService.changerCouleur(nouvelleCouleur);
 			changerCouleur.then(function (response) {
 				$scope.reponse = " [" + angular.toJson(response.data) + "]";
-				$scope.couleur = nouvelleCouleur;
 				$timeout(function () {
 					$scope.reponse = "";
 				}, 5000);
 			});
 		}
 
+		function priseEnCompteDeNouvelleCouleur(message) {
+			console.log(message);
+			$scope.couleur = message.couleur;
+		}
+
 		function abonnementAuxCouleurs() {
-			couleurNotificationService.subscribe();
+			couleurNotificationService.subscribe(priseEnCompteDeNouvelleCouleur);
 		}
 
 	}])

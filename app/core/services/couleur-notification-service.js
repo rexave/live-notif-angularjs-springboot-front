@@ -19,14 +19,11 @@ angular.module('myApp.services', [])
 			return defer.promise;
 		}
 
-		function subscribe() {
+		function subscribe(callbackOnMessage) {
 			console.log("abonnement demandé");
-			webSocketService.connexion('/topic/couleurs', lorsquOnRecoitUnMessage);
+			webSocketService.connexion('/topic/couleurs', callbackOnMessage);
 		}
 
-		function lorsquOnRecoitUnMessage(message) {
-			console.log(message);
-		}
 
 		return service;
 	}]);
