@@ -1,9 +1,15 @@
 'use strict';
 
 angular.module('myApp.ws', [])
-	.service("webSocketService", ['$http', '$websocket', function ($http, $websocket) {
+	.service("webSocketService", ['$http', '$stomp', function ($http, $stomp) {
+
+		$stomp.setDebug(function (args) {
+			console.debug(args);
+		});
+
 		var service = {
-			connexion: connexion
+			connexion: connexion,
+			deconnexion: deconnexion
 		};
 
 		var ws = null;
@@ -13,8 +19,19 @@ angular.module('myApp.ws', [])
 		 * @param callback fonction qui sera appelée sur un message
 		 */
 		function connexion(callback) {
-			var dataStream = $websocket('ws://localhost:9999/websocket');
-			dataStream.onMessage(callback);
+			$stomp.connect('http://localhost:9999/websocket')
+				.then(function (frame) {
+					//premier then = CONNECTED
+					var subscription = $stomp.subscribe('/topic/notifications', function (payload, headers, res) {
+						callback(payload);
+					});
+				});
+		}
+
+		function deconnexion() {
+			$stomp.disconnect().then(function () {
+				$log.info('disconnected');
+			});
 		}
 
 		return service;
