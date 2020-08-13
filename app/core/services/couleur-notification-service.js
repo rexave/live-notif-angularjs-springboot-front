@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.services', [])
-	.service("couleurNotificationService", ['$http', '$q', function ($http, $q) {
+	.service("couleurNotificationService", ['$http', '$q', 'webSocketService', function ($http, $q, webSocketService) {
 		var service = {
 			changerCouleur: changerCouleur,
 			subscribe: subscribe
@@ -21,6 +21,11 @@ angular.module('myApp.services', [])
 
 		function subscribe() {
 			console.log("abonnement demandé");
+			webSocketService.connexion(lorsquOnRecoitUnMessage);
+		}
+
+		function lorsquOnRecoitUnMessage(message){
+			console.log(message);
 		}
 
 		return service;
