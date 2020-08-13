@@ -21,10 +21,10 @@ angular.module('myApp.services', [])
 
 		function subscribe() {
 			console.log("abonnement demandé");
-			webSocketService.connexion(lorsquOnRecoitUnMessage);
+			webSocketService.connexion('/topic/couleurs', lorsquOnRecoitUnMessage);
 		}
 
-		function lorsquOnRecoitUnMessage(message){
+		function lorsquOnRecoitUnMessage(message) {
 			console.log(message);
 		}
 

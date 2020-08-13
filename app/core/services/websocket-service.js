@@ -16,13 +16,14 @@ angular.module('myApp.ws', [])
 
 		/**
 		 *
-		 * @param callback fonction qui sera appelée sur un message
+		 * @param topic {string}
+		 * @param callback {function} fonction qui sera appelée sur un message
 		 */
-		function connexion(callback) {
+		function connexion(topic, callback) {
 			$stomp.connect('http://localhost:9999/websocket')
 				.then(function (frame) {
 					//premier then = CONNECTED
-					var subscription = $stomp.subscribe('/topic/notifications', function (payload, headers, res) {
+					var subscription = $stomp.subscribe(topic, function (payload, headers, res) {
 						callback(payload);
 					});
 				});
