@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.services', [])
-	.service("couleurNotificationService", ['$http', function ($http) {
+	.service("couleurNotificationService", ['$http', '$q', function ($http, $q) {
 		var service = {
 			changerCouleur: changerCouleur,
 			subscribe: subscribe
@@ -9,7 +9,14 @@ angular.module('myApp.services', [])
 
 		function changerCouleur(nouvelleCouleur) {
 			console.log("changement demandé", nouvelleCouleur);
-			return true;
+			var defer = $q.defer();
+			$http.get("http://localhost:9999/couleur/activer/" + nouvelleCouleur)
+				.then(function (data) {
+					defer.resolve(data);
+				}, function (data) {
+					defer.reject(data);
+				});
+			return defer.promise;
 		}
 
 		function subscribe() {

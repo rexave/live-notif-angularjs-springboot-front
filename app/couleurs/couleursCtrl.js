@@ -9,7 +9,7 @@ angular.module('myApp.couleurs', [])
 				controllerAs: 'vm'
 			});
 	}])
-	.controller('couleurCtrl', ['couleurNotificationService', "$scope", function (couleurNotificationService, $scope) {
+	.controller('couleurCtrl', ['couleurNotificationService', "$scope", "$timeout", function (couleurNotificationService, $scope, $timeout) {
 
 		var vm = this;
 
@@ -32,15 +32,22 @@ angular.module('myApp.couleurs', [])
 
 		function genererListeNumer(max) {
 			var tab = [];
-			for(var i=0;i<max;i++){
+			for (var i = 0; i < max; i++) {
 				tab.push(i);
 			}
 			return tab;
 		}
 
 		function demanderChangerCouleur(nouvelleCouleur) {
-			couleurNotificationService.changerCouleur(nouvelleCouleur);
-			$scope.couleur = nouvelleCouleur;
+			$scope.couleur = "changement en cours";
+			var changerCouleur = couleurNotificationService.changerCouleur(nouvelleCouleur);
+			changerCouleur.then(function (response) {
+				$scope.reponse = " [" + angular.toJson(response.data) + "]";
+				$scope.couleur = nouvelleCouleur;
+				$timeout(function () {
+					$scope.reponse = "";
+				}, 5000);
+			});
 		}
 
 		function abonnementAuxCouleurs() {
