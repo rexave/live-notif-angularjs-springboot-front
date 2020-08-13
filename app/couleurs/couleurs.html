@@ -1,7 +1,17 @@
 <h1>Test de notification de couleur</h1>
-<button ng-click="abonnementAuxCouleurs()">S'abonner aux notifications</button>
-<p>La couleur actuelle est {{ couleur }}</p>
+<a class="btn btn-info" ng-click="abonnementAuxCouleurs()">S'abonner aux notifications</a>
+<p>La couleur actuelle est <span class="badge">{{ couleur }}</span></p>
 <p>Changer en :</p>
-<ul>
-	<li ng-repeat="newCouleur in listeCouleursDisponibles" ng-click="demanderChangerCouleur(newCouleur)">{{newCouleur}}</li>
+<ul class="list-group list-group-horizontal ">
+	<li class="list-group-item list-group-item-action" ng-repeat="newCouleur in listeCouleursDisponibles" ng-click="demanderChangerCouleur(newCouleur)">
+		{{newCouleur}}
+	</li>
 </ul>
+
+<div class="container mt-5">
+	<div class="row" ng-repeat="x in listeX">
+		<div class="col" ng-repeat="y in listeY">
+			{{ x }}-{{ y }}
+		</div>
+	</div>
+</div>

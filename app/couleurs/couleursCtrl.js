@@ -27,6 +27,17 @@ angular.module('myApp.couleurs', [])
 			"white"
 		];
 
+		$scope.listeX = genererListeNumer(12);
+		$scope.listeY = genererListeNumer(12);
+
+		function genererListeNumer(max) {
+			var tab = [];
+			for(var i=0;i<max;i++){
+				tab.push(i);
+			}
+			return tab;
+		}
+
 		function demanderChangerCouleur(nouvelleCouleur) {
 			couleurNotificationService.changerCouleur(nouvelleCouleur);
 			$scope.couleur = nouvelleCouleur;
