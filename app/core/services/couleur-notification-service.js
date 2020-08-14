@@ -41,7 +41,14 @@ angular.module('myApp.services', [])
 			var y = message.y;
 			var couleur = message.couleur;
 			console.log("notification de la boite", x, y, couleur);
-			listeSubscriber[x][y](couleur);
+			var listeSubscriberElementElement = listeSubscriber[x][y];
+			if(isFunction(listeSubscriberElementElement)){
+				listeSubscriberElementElement(couleur);
+			}
+		}
+
+		function isFunction(functionToCheck) {
+			return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 		}
 
 
