@@ -1,5 +1,9 @@
 <h1>Test de notification de couleur</h1>
-<p><a class="btn btn-info" ng-click="abonnementAuxCouleurs()">S'abonner aux notifications</a> {{pipo}}</p>
+<p><a class="btn btn-info" ng-click="abonnementAuxCouleurs()">S'abonner aux notifications</a>  {{pipo}}</p>
+<p>Etat actuel :
+	<span class="badge badge-danger" ng-show="!connected">Déconnecté</span>
+	<span class="badge badge-success" ng-show="connected">Connecté</span>
+</p>
 <p>La couleur actuelle est <span class="badge">{{ couleur }}</span> {{ reponse }}</p>
 <p>Changer en : </p>
 <ul class="list-group list-group-horizontal ">

@@ -27,8 +27,8 @@ angular.module('myApp.couleurs', [])
 			"white"
 		];
 
-		$scope.maxX = 50;
-		$scope.maxY = 50;
+		$scope.maxX = 10;
+		$scope.maxY = 10;
 
 		$scope.listeX = genererListeNumer($scope.maxX);
 		$scope.listeY = genererListeNumer($scope.maxY);
@@ -62,7 +62,14 @@ angular.module('myApp.couleurs', [])
 
 
 		function abonnementAuxCouleurs() {
-			couleurNotificationService.connexionAuTopic($scope.maxX, $scope.maxY);
+			couleurNotificationService.connexionAuTopic($scope.maxX, $scope.maxY)
+				.then(function (){
+					$scope.connected = true;
+				})
+				.catch(function (error){
+					$scope.connected = false;
+					console.error(error);
+				});
 		}
 
 	}])

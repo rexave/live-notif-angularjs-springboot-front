@@ -15,7 +15,7 @@ angular.module('myApp.services', [])
 		function changerCouleur(nouvelleCouleur) {
 			console.log("changement demandé", nouvelleCouleur);
 			var defer = $q.defer();
-			$http.get("http://localhost:9999/couleur/activer/" + nouvelleCouleur + "/" + maxX + "/" + maxY)
+			$http.get("/api/couleur/activer/" + nouvelleCouleur + "/" + maxX + "/" + maxY)
 				.then(function (data) {
 					defer.resolve(data);
 				}, function (data) {
@@ -28,7 +28,7 @@ angular.module('myApp.services', [])
 			console.log("abonnement demandé");
 			maxX = maxXp;
 			maxY = maxYp;
-			webSocketService.connexion('/topic/couleurs', notifierBoiteEnfant);
+			return webSocketService.connexion('/topic/couleurs', notifierBoiteEnfant);
 		}
 
 		function subscribe(x, y, callbackOnMessage) {

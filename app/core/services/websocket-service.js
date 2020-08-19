@@ -20,7 +20,8 @@ angular.module('myApp.ws', [])
 		 * @param callback {function} fonction qui sera appelée sur un message
 		 */
 		function connexion(topic, callback) {
-			$stomp.connect('http://localhost:9999/websocket')
+			return $stomp.connect('https://georges.local.sis.sncf.fr/websocket')
+			// return $stomp.connect('http://localhost:9999/websocket')
 				.then(function (frame) {
 					//premier then = CONNECTED
 					var subscription = $stomp.subscribe(topic, function (payload, headers, res) {
@@ -30,9 +31,11 @@ angular.module('myApp.ws', [])
 		}
 
 		function deconnexion() {
-			$stomp.disconnect().then(function () {
-				$log.info('disconnected');
+			var promise = $stomp.disconnect();
+			promise.then(function () {
+				console.log('disconnected');
 			});
+			return promise;
 		}
 
 		return service;
