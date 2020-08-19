@@ -6,6 +6,7 @@ angular.module('myApp', [
 	'ngStomp',
 	'myApp.home',
 	'myApp.couleurs',
+	'myApp.topic',
 	'myApp.services',
 	'myApp.components',
 	'myApp.ws'
@@ -14,6 +15,5 @@ angular.module('myApp', [
 
 	$routeProvider
 		.otherwise({redirectTo: '/home'});
-	console.log("configured");
 }]);
 
