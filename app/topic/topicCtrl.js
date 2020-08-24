@@ -14,7 +14,7 @@ angular.module('myApp.topic', [])
 
 			var vm = this;
 
-			$scope.topic = "topic1";
+			$scope.topicName = "prive";
 			$scope.auteur = "Bob";
 			$scope.message = "coucou";
 
