@@ -1,13 +1,30 @@
 <h1>Test de notification topic dynamique</h1>
-<div class="form-inline"><input class="form-control" ng-model="topicName" placeholder="Nom du topic" name="topic_name"/>
-	<a class="btn btn-info" ng-click="abonnementAuTopic(topicName)">S'abonner aux notifications</a></div>
-<p>Etat actuel :
-	<span class="badge badge-danger" ng-show="!connected">Déconnecté</span>
-	<span class="badge badge-success" ng-show="connected">Connecté</span>
+<h2>Authentification</h2>
+<p>Etat authentification :
+	<span class="badge badge-danger" ng-show="authenticated=='ko'">not authentificated</span>
+	<span class="badge badge-success" ng-show="authenticated=='ok'">authenticated</span>
+	<span class="badge badge-warning" ng-show="authenticated=='wip'">authentication in progress</span>
 </p>
-<p>Messages: {{ messages }}</p>
-<p class="form-inline">Envoyer un message :
-	<input class="form-control" ng-model="auteur" placeholder="Auteur" name="auteur"/>
-	<input class="form-control" ng-model="message" placeholder="Message" name="message"/>
-	<a class="btn btn-info" ng-click="envoyerMessage(topicName,message, auteur)">Envoyer</a>{{reponse}}</p>
+<div ng-show="authenticated!=='ok'">
+	<p class="form-inline">Login :
+		<input class="form-control" ng-model="username" placeholder="username" name="username"/>
+		<input class="form-control" ng-model="password" placeholder="password" name="password"/>
+		<a class="btn btn-info" ng-click="authenticate(username, password)">Authentification</a>{{reponseAuthent}}</p>
+</div>
+<div>
+	<h2>Connexion aux topics</h2>
+
+	<div class="form-inline"><input class="form-control" ng-model="topicName" placeholder="Nom du topic"
+									name="topic_name"/>
+		<a class="btn btn-info" ng-click="abonnementAuTopic(topicName)">S'abonner aux notifications</a></div>
+	<p>Etat actuel :
+		<span class="badge badge-danger" ng-show="!connected">Déconnecté</span>
+		<span class="badge badge-success" ng-show="connected">Connecté</span>
+	</p>
+	<p>Messages: {{ messages }}</p>
+	<p class="form-inline">Envoyer un message :
+		<input class="form-control" ng-model="auteur" placeholder="Auteur" name="auteur"/>
+		<input class="form-control" ng-model="message" placeholder="Message" name="message"/>
+		<a class="btn btn-info" ng-click="envoyerMessage(topicName,message, auteur)">Envoyer</a>{{reponse}}</p>
+</div>
 
